@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const aboutLink = document.getElementById("aboutLink");
     const homeLink = document.getElementById("homeLink");
     const contactLink = document.getElementById("contactLink");
-    const workspaceLink = document.getElementById("workspaceLink"); // Select the existing element
+    const workspaceLink = document.getElementById("workspaceLink");
     const content = document.getElementById("content");
-    const style = document.createElement("style");
 
-    // Add CSS styles
+    // Add CSS styles dynamically
+    const style = document.createElement("style");
     style.textContent = `
         body {
             margin: 0;
@@ -78,7 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
           nav ul li {
             margin: 10px 0;
           }
-        
+        }
+
+        /* About Section */
         .about-section {
             text-align: center;
             padding: 20px;
@@ -184,81 +186,82 @@ document.addEventListener("DOMContentLoaded", function () {
                 width: 90%;
             }
         }
-        
     `;
     document.head.appendChild(style); // Add <style> tag to <head>
 
+    // Function to load content dynamically
+    function loadContent(html) {
+        if (content) {
+            content.innerHTML = html;
+        }
+    }
 
     // Click event for "About" link
     if (aboutLink) {
         aboutLink.addEventListener("click", function (event) {
             event.preventDefault();
-            if (content) {
-                content.innerHTML = `
-                    <div class="container">
-                        <div class="navbar">
-                            <img src="LG.jpg" alt="Logo" class="logo">
-                            <nav>
-                                <ul>
-                                    <li><a href="HOME.html">Home</a></li>
-                                    <li><a href="ABT.html">About Us</a></li>
-                                    <li><a href="WORKS.html">Workspace</a></li>
-                                    <li><a href="CONTACT.html">Contact Us</a></li>
-                                </ul>
-                            </nav>
+            loadContent(`
+                <div class="container">
+                    <div class="navbar">
+                        <img src="LG.jpg" alt="Logo" class="logo">
+                        <nav>
+                            <ul>
+                                <li><a href="#home" id="homeLink">Home</a></li>
+                                <li><a href="#about" id="aboutLink">About Us</a></li>
+                                <li><a href="#works" id="workspaceLink">Workspace</a></li>
+                                <li><a href="#contact" id="contactLink">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+            
+                    <div class="content">
+                        <div class="about-section">
+                            <h2>WHAT IS <span>DREAMIS</span>?</h2>
+                            <p>This platform is designed to enhance the educational experience for students and teachers, ensuring that they can accomplish their tasks more efficiently and effectively. By providing a range of user-friendly tools and resources, the platform streamlines communication, facilitates collaboration, and optimizes the learning process. Students will find valuable features tailored to help them manage their assignments, access study materials, and engage with their peers and instructors seamlessly. Meanwhile, teachers can benefit from tools that simplify lesson planning, grading, and tracking student progress, allowing them to focus more on teaching and mentoring.</p>
                         </div>
-                
-                        <div class="content">
-                            <div class="about-section">
-                                <h2>WHAT IS <span>DREAMIS</span>?</h2>
-                                <p>This platform is designed to enhance the educational experience for students and teachers, ensuring that they can accomplish their tasks more efficiently and effectively. By providing a range of user-friendly tools and resources, the platform streamlines communication, facilitates collaboration, and optimizes the learning process. Students will find valuable features tailored to help them manage their assignments, access study materials, and engage with their peers and instructors seamlessly. Meanwhile, teachers can benefit from tools that simplify lesson planning, grading, and tracking student progress, allowing them to focus more on teaching and mentoring.</p>
-                            </div>
-                
-                            <div class="missions">
-                                <h3>OUR MISSIONS</h3>
-                                <div class="mission-cards">
-                                    <div class="card">
-                                        <img src="mission1.png" alt="Mission 1">
-                                        <h4>Create a vibrant and supportive educational environment</h4>
-                                        <p>Not only drives academic success but also cultivates a culture of student engagement and learning.</p>
-                                    </div>
-                                    <div class="card">
-                                        <img src="mission2.png" alt="Mission 2">
-                                        <h4>Bridging the gap between students and educators</h4>
-                                        <p>We strive to make education more accessible, interactive, and rewarding for every participant.</p>
-                                    </div>
-                                    <div class="card">
-                                        <img src="mission3.png" alt="Mission 3">
-                                        <h4>Designed with user-friendliness in mind</h4>
-                                        <p>Mentoring and inspiring students through innovative tools and strategies.</p>
-                                    </div>
-                                    <div class="card">
-                                        <img src="mission4.png" alt="Mission 4">
-                                        <h4>Encouraging creativity & efficiency</h4>
-                                        <p>Helping students and teachers achieve their best through structured resources.</p>
-                                    </div>
+            
+                        <div class="missions">
+                            <h3>OUR MISSIONS</h3>
+                            <div class="mission-cards">
+                                <div class="card">
+                                    <img src="mission1.png" alt="Mission 1">
+                                    <h4>Create a vibrant and supportive educational environment</h4>
+                                    <p>Not only drives academic success but also cultivates a culture of student engagement and learning.</p>
+                                </div>
+                                <div class="card">
+                                    <img src="mission2.png" alt="Mission 2">
+                                    <h4>Bridging the gap between students and educators</h4>
+                                    <p>We strive to make education more accessible, interactive, and rewarding for every participant.</p>
+                                </div>
+                                <div class="card">
+                                    <img src="mission3.png" alt="Mission 3">
+                                    <h4>Designed with user-friendliness in mind</h4>
+                                    <p>Mentoring and inspiring students through innovative tools and strategies.</p>
+                                </div>
+                                <div class="card">
+                                    <img src="mission4.png" alt="Mission 4">
+                                    <h4>Encouraging creativity & efficiency</h4>
+                                    <p>Helping students and teachers achieve their best through structured resources.</p>
                                 </div>
                             </div>
-                
-                            <div class="closing-statement">
-                                <h2>WHERE <span>CREATIVITY</span> MEETS <span>EFFICIENCY</span></h2>
-                                <p><b>JOIN US</b> IN REVOLUTIONIZING THE WAY WE LEARN AND TEACH!</p>
-                                <button>Start Your Journey</button>
-                            </div>
+                        </div>
+            
+                        <div class="closing-statement">
+                            <h2>WHERE <span>CREATIVITY</span> MEETS <span>EFFICIENCY</span></h2>
+                            <p><b>JOIN US</b> IN REVOLUTIONIZING THE WAY WE LEARN AND TEACH!</p>
+                            <button>Start Your Journey</button>
                         </div>
                     </div>
-
-                `;
-            }
+                </div>
+            `);
         });
     }
 
     // Click event for "Workspace" link
-if (workspaceLink) {
-    workspaceLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        if (content) {
-            content.innerHTML = `
+    if (workspaceLink) {
+        workspaceLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            loadContent(`
                 <div style="text-align: center; padding: 20px;">
                     <h1 style="font-family: 'Lilita One', sans-serif; color: #372d2f;">Workspace</h1>
                     <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
@@ -271,78 +274,74 @@ if (workspaceLink) {
                     </div>
                     ${getFooter()}
                 </div>
-            `;
+            `);
 
-            // Add event listeners for navigation buttons
+            // Add event listeners for workspace buttons
             document.getElementById("pomodoroBtn").addEventListener("click", loadPomodoro);
             document.getElementById("calendarBtn").addEventListener("click", loadCalendar);
             document.getElementById("flashcardsBtn").addEventListener("click", loadFlashcards);
 
             // Load Pomodoro by default
             loadPomodoro();
-        }
-    });
-}
-
+        });
+    }
 
     // Click event for "Home" link
     if (homeLink) {
         homeLink.addEventListener("click", function (event) {
             event.preventDefault();
-            if (content) {
-                content.innerHTML = `
-                    <h1 style="font-family: Lilita One; color: #372d2f; text-align: center; margin-top: 70px">
-                        DREAMIS
-                    </h1>
-                    <h2 style="font-family: Poppins; color: #372d2f; text-align: center; margin-top: 30px">
-                        WHERE <b>CREATIVITY</b> MEETS <b>EFFICIENCY</b>
-                    </h2>
-                    <button class="start-button" style="display: block; margin: auto;">
-                        <img src="https://www.pngkit.com/png/full/88-886775_transparent-black-hearts-tumblr-black-heart.png" alt="Heart Icon"> 
-                        Start your day
-                    </button>
-                    <div style="height: 20px;"></div>
-                    <img src="https://sigmawire.net/i/03/sI6FnO.png" alt="Study desk" style="border-radius: 15px; width: 800px; height: 500px; margin: auto; display:block;">
-                    <h1 style="font-family: Lilita One; margin-top: 40px; margin-left: 70px; font-size: 70px;">WORKSPACE</h1>
-                    <div style="display: flex; align-items: flex-start; justify-content: flex-start; gap: 20px;">
-                        <div style="margin-top: 50px;">
-                            <div style="font-family: Lilita One, sans-serif; font-size: 30px; color: #372d2f; margin-bottom: 10px;">
-                                Your Calendar and To-Do List
-                            </div>
-                            <p style="font-family: Poppins, sans-serif; font-size: 16px; color: #372d2f;">
-                                Manage your time effectively and boost productivity with your personalized calendar and to-do list.
-                                Stay organized and never miss a deadline!
-                            </p>
+            loadContent(`
+                <h1 style="font-family: Lilita One; color: #372d2f; text-align: center; margin-top: 70px">
+                    DREAMIS
+                </h1>
+                <h2 style="font-family: Poppins; color: #372d2f; text-align: center; margin-top: 30px">
+                    WHERE <b>CREATIVITY</b> MEETS <b>EFFICIENCY</b>
+                </h2>
+                <button class="start-button" style="display: block; margin: auto;">
+                    <img src="https://www.pngkit.com/png/full/88-886775_transparent-black-hearts-tumblr-black-heart.png" alt="Heart Icon"> 
+                    Start your day
+                </button>
+                <div style="height: 20px;"></div>
+                <img src="https://sigmawire.net/i/03/sI6FnO.png" alt="Study desk" style="border-radius: 15px; width: 800px; height: 500px; margin: auto; display:block;">
+                <h1 style="font-family: Lilita One; margin-top: 40px; margin-left: 70px; font-size: 70px;">WORKSPACE</h1>
+                <div style="display: flex; align-items: flex-start; justify-content: flex-start; gap: 20px;">
+                    <div style="margin-top: 50px;">
+                        <div style="font-family: Lilita One, sans-serif; font-size: 30px; color: #372d2f; margin-bottom: 10px;">
+                            Your Calendar and To-Do List
                         </div>
-                        <img src="https://sigmawire.net/i/03/q54SKJ.jpg" alt="Calendar" style="border-radius: 15px; width: 900px; height: 500px;">
+                        <p style="font-family: Poppins, sans-serif; font-size: 16px; color: #372d2f;">
+                            Manage your time effectively and boost productivity with your personalized calendar and to-do list.
+                            Stay organized and never miss a deadline!
+                        </p>
                     </div>
-                    <div style="display: flex; align-items: flex-start; gap: 20px; justify-content: center; margin-top: 50px;">
-                        <img src="https://d3dexbrq797glq.cloudfront.net/20/pomodoro_method.jpg" 
-                             alt="Pomodoro Timer" 
-                             style="border-radius: 15px; width: 900px; height: 500px;">
-                        <div style="margin-top: 50px;">
-                            <div style="font-family: Lilita One, sans-serif; font-size: 30px; color: #372d2f; margin-bottom: 10px;">
-                                Pomodoro Timer
-                            </div>
-                            <p style="font-family: Poppins, sans-serif; font-size: 16px; color: #372d2f;">
-                                Stay focused! Break your tasks into focused 25-minute sessions, followed by short 5-minute breaks to recharge.
-                            </p>
+                    <img src="https://sigmawire.net/i/03/q54SKJ.jpg" alt="Calendar" style="border-radius: 15px; width: 900px; height: 500px;">
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 20px; justify-content: center; margin-top: 50px;">
+                    <img src="https://d3dexbrq797glq.cloudfront.net/20/pomodoro_method.jpg" 
+                         alt="Pomodoro Timer" 
+                         style="border-radius: 15px; width: 900px; height: 500px;">
+                    <div style="margin-top: 50px;">
+                        <div style="font-family: Lilita One, sans-serif; font-size: 30px; color: #372d2f; margin-bottom: 10px;">
+                            Pomodoro Timer
                         </div>
+                        <p style="font-family: Poppins, sans-serif; font-size: 16px; color: #372d2f;">
+                            Stay focused! Break your tasks into focused 25-minute sessions, followed by short 5-minute breaks to recharge.
+                        </p>
                     </div>
-                    <div style="display: flex; align-items: flex-start; justify-content: flex-start; gap: 240px; margin-top: 50px;">
-                        <div style="margin-top: 50px;">
-                            <div style="font-family: Lilita One, sans-serif; font-size: 30px; color: #372d2f; margin-bottom: 10px;">
-                                Flashcards
-                            </div>
-                            <p style="font-family: Poppins, sans-serif; font-size: 16px; color: #372d2f;">
-                                Test yourself, recall, and stay motivated as you unlock your full potential—one card at a time!
-                            </p>
+                </div>
+                <div style="display: flex; align-items: flex-start; justify-content: flex-start; gap: 240px; margin-top: 50px;">
+                    <div style="margin-top: 50px;">
+                        <div style="font-family: Lilita One, sans-serif; font-size: 30px; color: #372d2f; margin-bottom: 10px;">
+                            Flashcards
                         </div>
-                        <img src="https://www.brainscape.com/academy/content/images/2020/08/flashcards-1591812_1280.jpg" alt="Flashcards" style="border-radius: 15px; width: 900px; height: 500px;">
+                        <p style="font-family: Poppins, sans-serif; font-size: 16px; color: #372d2f;">
+                            Test yourself, recall, and stay motivated as you unlock your full potential—one card at a time!
+                        </p>
                     </div>
-                    ${getFooter()}
-                `;
-            }
+                    <img src="https://www.brainscape.com/academy/content/images/2020/08/flashcards-1591812_1280.jpg" alt="Flashcards" style="border-radius: 15px; width: 900px; height: 500px;">
+                </div>
+                ${getFooter()}
+            `);
         });
     }
 
@@ -350,65 +349,63 @@ if (workspaceLink) {
     if (contactLink) {
         contactLink.addEventListener("click", function (event) {
             event.preventDefault();
-            if (content) {
-                content.innerHTML = `
-                    <div class="contact-container">
-                        <h1 class="contact-title">Contact Us</h1>
-                        <p class="contact-description">
-                            We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out using the form below.
-                        </p>
-                        <form class="contact-form">
-                            <input type="text" placeholder="Your Name" required />
-                            <input type="email" placeholder="Your Email" required />
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
-                            <button type="submit">Send Message</button>
-                        </form>
-                        <div class="contact-info">
-                            <h3>Contact Information</h3>
-                            <ul>
-                                <li>
-                                    <strong>Nica Bangalan</strong>
-                                    <div>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook Icon">
-                                        <a href="https://facebook.com/Nica Francheska" target="_blank">Nica Francheska</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <strong>Mackenzie Riguer</strong>
-                                    <div>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon">
-                                        <a href="mailto:mackenzieriguer12@gmail.com">mackenzieriguer12@gmail.com</a>
-                                    </div>
-                                    <div>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook Icon">
-                                        <a href="https://facebook.com/Mackenzie Riguer" target="_blank">Mackenzie Riguer</a>
-                                    </div>
-                                    <div>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/126/126341.png" alt="Phone Icon">
-                                        <a href="tel:09614961963">09614961963</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <strong>Amber Jillian Caras</strong>
-                                    <div>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon">
-                                        <a href="mailto:carasamberjillian@gmail.com">carasamberjillian@gmail.com</a>
-                                    </div>
-                                    <div>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook Icon">
-                                        <a href="https://facebook.com/Amber Jillian Caras" target="_blank">Amber Jillian Caras</a>
-                                    </div>
-                                    <div>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/126/126341.png" alt="Phone Icon">
-                                        <a href="tel:09847951401">09847951401</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+            loadContent(`
+                <div class="contact-container">
+                    <h1 class="contact-title">Contact Us</h1>
+                    <p class="contact-description">
+                        We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out using the form below.
+                    </p>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required />
+                        <input type="email" placeholder="Your Email" required />
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <ul>
+                            <li>
+                                <strong>Nica Bangalan</strong>
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook Icon">
+                                    <a href="https://facebook.com/Nica Francheska" target="_blank">Nica Francheska</a>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Mackenzie Riguer</strong>
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon">
+                                    <a href="mailto:mackenzieriguer12@gmail.com">mackenzieriguer12@gmail.com</a>
+                                </div>
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook Icon">
+                                    <a href="https://facebook.com/Mackenzie Riguer" target="_blank">Mackenzie Riguer</a>
+                                </div>
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/126/126341.png" alt="Phone Icon">
+                                    <a href="tel:09614961963">09614961963</a>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Amber Jillian Caras</strong>
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon">
+                                    <a href="mailto:carasamberjillian@gmail.com">carasamberjillian@gmail.com</a>
+                                </div>
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook Icon">
+                                    <a href="https://facebook.com/Amber Jillian Caras" target="_blank">Amber Jillian Caras</a>
+                                </div>
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/126/126341.png" alt="Phone Icon">
+                                    <a href="tel:09847951401">09847951401</a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    ${getFooter()}
-                `;
-            }
+                </div>
+                ${getFooter()}
+            `);
         });
     }
 });
