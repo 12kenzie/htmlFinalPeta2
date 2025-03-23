@@ -8,249 +8,182 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add CSS styles
     style.textContent = `
-        /* General styles */
         body {
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Profile icon styles */
-        .profile-icon {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #372d2f;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-icon img {
-            width: 24px;
-            height: 24px;
-            filter: invert(1); /* Makes the icon white */
-        }
-
-        .profile-dropdown {
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: none;
-            z-index: 1000;
-        }
-
-        .profile-dropdown a {
-            display: block;
-            padding: 10px 20px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            color: #372d2f;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .profile-dropdown a:hover {
-            background-color: #f7f7f7;
-        }
-
-        /* Features section styles */
-        .features-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-            margin: 50px 20px;
-            text-align: center;
-            background-color: #f7f7f7;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-item {
-            flex: 1;
-            margin: 0 10px;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 15px;
-        }
-
-        .feature-item h2 {
+            padding: 0;
             font-family: 'Lilita One', sans-serif;
-            font-size: 24px;
-            color: #372d2f;
-            margin-bottom: 10px;
-        }
-
-        .feature-item p {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #372d2f;
-        }
-
-        /* Contact form styles */
-        .contact-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #f7f7f7;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .contact-title {
-            font-family: 'Lilita One', sans-serif;
-            font-size: 36px;
-            color: #372d2f;
-            margin-bottom: 20px;
-        }
-
-        .contact-description {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            color: #372d2f;
-            margin-bottom: 30px;
-        }
-
-        .contact-form {
+            background: url('1.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh; 
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
         }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
+    
+        .container {
+            flex: 1; 
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Navbar */
+        .navbar {
+          height: 12%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        
+        .logo {
+          width: 50px;
+          cursor: pointer;
+          border-radius: 50%;
+        }
+        
+        nav ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+        }
+        
+        nav ul li {
+          margin-left: 40px;
+        }
+        
+        nav ul li a {
+          text-decoration: none;
+          color: #372d2f;
+          font-size: 16px;
+          transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+          color: #ff69b4;
+        }
+        
+        @media (max-width: 768px) {
+          .navbar {
+            flex-direction: column;
+            text-align: center;
+          }
+        
+          nav ul {
+            flex-direction: column;
+          }
+        
+          nav ul li {
+            margin: 10px 0;
+          }
+        
+        .about-section {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .about-section h2 {
+            font-size: 24px;
+        }
+        
+        .about-section span {
+            color: #c94b7c;
+            font-weight: bold;
+        }
+        
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto;
             font-size: 16px;
+            line-height: 1.5;
         }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 150px;
+        
+        .missions {
+            text-align: center;
+            padding: 20px;
         }
-
-        .contact-form button {
-            padding: 10px 20px;
-            background-color: #372d2f;
+        
+        .mission-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .card {
+            width: 250px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        
+        .card h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        /* Closing Statement */
+        .closing-statement {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .closing-statement h2 {
+            font-size: 24px;
+        }
+        
+        .closing-statement span {
+            color: #c94b7c;
+            font-weight: bold;
+        }
+        
+        .closing-statement p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .closing-statement button {
+            background: #c94b7c;
             color: white;
             border: none;
-            border-radius: 5px;
-            font-family: 'Lilita One', sans-serif;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-form button:hover {
-            background-color: #4a3f41;
-        }
-
-        .contact-info {
-            text-align: left;
-            font-family: 'Poppins', sans-serif;
+            padding: 12px 20px;
             font-size: 16px;
-            color: #372d2f;
-            margin-top: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-
-        .contact-info h3 {
-            font-family: 'Lilita One', sans-serif;
-            font-size: 24px;
-            color: #372d2f;
-            margin-bottom: 20px;
+        
+        .closing-statement button:hover {
+            background: #b23b69;
         }
-
-        .contact-info ul {
-            list-style: none;
-            padding: 0;
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mission-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            .card {
+                width: 90%;
+            }
         }
-
-        .contact-info ul li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-info ul li strong {
-            font-family: 'Lilita One', sans-serif;
-            font-size: 18px;
-            color: #372d2f;
-            margin-right: 10px;
-        }
-
-        .contact-info ul li a {
-            color: #372d2f;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-info ul li a:hover {
-            color: #4a3f41;
-        }
-
-        .contact-info ul li img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-        }
-
-        /* Pomodoro Timer Styles */
-    #timer {
-        font-family: 'Lilita One', sans-serif;
-        color: #372d2f;
-        margin: 20px 0;
-    }
-    
-    .start-btn, .settings-btn {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    .start-btn {
-        background-color: #372d2f;
-        color: white;
-    }
-    
-    .start-btn:hover {
-        background-color: #4a3f41;
-    }
-    
-    .settings-btn {
-        background-color: #f7f7f7;
-        color: #372d2f;
-        border: 1px solid #ccc;
-    }
-    
-    .settings-btn:hover {
-        background-color: #e0e0e0;
-    }
         
     `;
     document.head.appendChild(style); // Add <style> tag to <head>
