@@ -1,9 +1,9 @@
-function showLogin() // Show to the user the log-in form when they press the avatar icon
+function showLogin() 
 {
     document.getElementById("popup").style.display = "block";
     document.getElementById("overlay").style.display = "block";
 
-    // Set the form for login
+    // Set content for Login
     document.getElementById("popup-heading").innerText = "Login";
     document.getElementById("popup-form").innerHTML = `
         <input type="text" placeholder="Username" required>
@@ -16,8 +16,9 @@ function showLogin() // Show to the user the log-in form when they press the ava
 }
 
 function showSignUp() 
-{ 
-    // Change the form to sign-up
+{
+    
+    // Switch the pop-up to Sign Up
     document.getElementById("popup-heading").innerText = "Sign Up";
     document.getElementById("popup-form").innerHTML = `
         <input type="text" placeholder="Username" required>
@@ -30,12 +31,8 @@ function showSignUp()
     `;
 }
 
-function closeLogin() // Close the login pop-up
+function closePopup() 
 {
-  document.getElementById("popup").style.display = "none";
-  document.getElementById("overlay").style.display = "none";
-}
-function closeLogin() {
-    document.getElementById("popup").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
+     document.getElementById("popup").style.display = "none";
+     document.getElementById("overlay").style.display = "none";
 }
