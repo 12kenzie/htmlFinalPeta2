@@ -122,10 +122,10 @@ button:hover {
   color: #372d2f;
 }
 
-.card1 { background-image: url('c1.jpg'); }
-.card2 { background-image: url('c2.jpg'); }
-.card3 { background-image: url('c3.jpg'); }
-.card4 { background-image: url('c4.jpg'); }
+.card1 { background-image: url('imgs/c1.jpg'); }
+.card2 { background-image: url('imgs/c2.jpg'); }
+.card3 { background-image: url('imgs/c3.jpg'); }
+.card4 { background-image: url('imgs/c4.jpg'); }
 
 .card:hover {
   transform: translateY(-10px);
