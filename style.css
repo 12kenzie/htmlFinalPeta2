@@ -175,7 +175,7 @@ h5 {
 {
     display: block;
     width: 100%;
-    margin: 10px 0;
+    margin: 10px -10px; /* For the form input to be at the middle and not touch the edge*/
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -185,16 +185,16 @@ h5 {
 {
      width: 100%;
      padding: 10px;
-     border: none;
-     background-color: #007bff;
-     color: white;
+     background-color: #eeb4c2;
+     color: #372d2f;
      cursor: pointer;
      border-radius: 5px;
+     border-color: 2px solid #372d2f;
 }
 
 .popup-container button:hover 
 {
-      background-color: #0056b3;
+      background-color: #eaccd1;
 }
 
 /* Overlay styling */
