@@ -6,6 +6,156 @@
     <link href="https://fonts.googleapis.com/css?family=Lilita+One" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Contact Us</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lilita One', sans-serif;
+            background: url('1.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            flex: 1; 
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            width: 50px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #372d2f;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ff69b4;
+        }
+        
+        .contact {
+            background-color: #FFF2F2;
+            padding: 30px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        textarea {
+            height: 100px;
+        }
+        
+        input[type="submit"] {
+            background-color: #2D336B;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #1b254f;
+        }
+        
+        .profile-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .profile-card {
+            background-color: #2D336B;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .profilepic {
+            width: 100px;  
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover; 
+            display: block;
+            margin: 0 auto 10px;
+            border: 3px solid white;
+        }
+        
+        .profile-card h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .profile-card p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            .profile-card {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
 
