@@ -145,6 +145,11 @@ h5 {
   clear: both;
 }
 
+.profile:hover 
+{
+    cursor: pointer; /* Changes the cursor to a pointing hand when avatar is hovered*/
+}
+
 /* Styling for the pop-up container */
 .popup-container 
 {
