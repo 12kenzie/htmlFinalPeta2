@@ -55,6 +55,10 @@ nav ul li a:hover {
   color: #ff69b4;
 }
 
+.navbar nav {
+    margin-right: 10px; 
+}
+
 /* Hero Section */
 .row {
   display: flex;
