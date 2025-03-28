@@ -153,51 +153,54 @@ h5 {
 /* Styling for the pop-up container */
 .popup-container 
 {
-   display: none; /* Hidden by default */
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   width: 300px;
-   background: #f9f9f9;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-   padding: 20px;
-   border-radius: 8px;
-   z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f9f9f9;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000;
 }
 
 .popup-container h2 
 {
-   margin-top: 0;
+    margin: 0 0 20px;
 }
 
 .popup-container input 
 {
+    display: block;
     width: 100%;
     margin: 10px 0;
-    padding: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .popup-container button 
 {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    cursor: pointer;
-    border-radius: 4px;
+     width: 100%;
+     padding: 10px;
+     border: none;
+     background-color: #007bff;
+     color: white;
+     cursor: pointer;
+     border-radius: 5px;
 }
 
 .popup-container button:hover 
 {
-     background: #0056b3;
+      background-color: #0056b3;
 }
 
 /* Overlay styling */
 .overlay 
 {
-     display: none; /* Hidden by default */
+     display: none;
      position: fixed;
      top: 0;
      left: 0;
