@@ -30,6 +30,18 @@
                 <button type="button">Explore</button>
             </div>
 
+            <!-- Login pop-up -->
+            <div class="overlay" id="overlay" onclick="closeLogin()"></div>
+            <div class="popup-container" id="popup">
+                <h2>Login</h2>
+                <form>
+                    <input type="text" placeholder="Username" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Submit</button>
+                </form>
+                <button onclick="closeLogin()">Close</button>
+            </div>
+
             <div class="col">
                 <div class="card card1">
                     <h5>TO-DO LIST AND CALENDAR</h5>
