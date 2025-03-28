@@ -9,7 +9,7 @@ body {
 .container {
   width: 100%;
   min-height: 100vh; /* Allows the container to expand with content */
-  background-image: linear-gradient(rgba(255, 182, 193, 0.3), rgba(255, 192, 203, 0.7)), url('1.jpg');
+  background-image: linear-gradient(rgba(255, 182, 193, 0.3), rgba(255, 192, 203, 0.7)), url('imgs/1.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
