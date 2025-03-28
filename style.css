@@ -145,7 +145,7 @@ h5 {
   clear: both;
 }
 
-.profile:hover 
+.profile-hover 
 {
     cursor: pointer; /* Changes the cursor to a pointing hand when avatar is hovered*/
 }
