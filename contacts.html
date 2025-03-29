@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Lilita+One" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <title>Dreamis — Contact Us</title>
     <style>
-        
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+        
+        body {
             font-family: 'Lilita One', sans-serif;
             background: url('imgs/1.jpg'); 
             background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             min-height: 100vh; 
@@ -27,10 +30,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }
         
         .navbar {
@@ -38,14 +39,15 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
+            margin-bottom: 20px;
         }
 
-        /* Workspace dropown */
         /* Dropdown Styles */
         .dropdown {
             position: relative;
             display: inline-block;
         }
+        
         .dropdown-content {
             display: none;
             position: absolute;
@@ -53,16 +55,21 @@
             min-width: 160px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
+            border-radius: 5px;
         }
+        
         .dropdown-content a {
             color: black;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
         }
+        
         .dropdown-content a:hover {
             background-color: #f1f1f1;
+            border-radius: 5px;
         }
+        
         .workspace:hover .dropdown-content {
             display: block;
         }
@@ -75,13 +82,13 @@
         
         nav ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
             display: flex;
+            flex-wrap: wrap;
         }
         
         nav ul li {
-            margin-left: 40px;
+            margin-left: 20px;
+            margin-bottom: 5px;
         }
         
         nav ul li a {
@@ -98,10 +105,14 @@
         .contact {
             background-color: #FFF2F2;
             padding: 30px;
-            margin: 20px;
+            margin-bottom: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+        }
+        
+        .contact h2 {
+            margin-bottom: 20px;
         }
         
         .form-group {
@@ -118,6 +129,7 @@
         
         textarea {
             height: 100px;
+            resize: vertical;
         }
         
         input[type="submit"] {
@@ -128,10 +140,23 @@
             font-size: 16px;
             cursor: pointer;
             font-family: 'Times New Roman', serif;
+            transition: background-color 0.3s;
         }
         
         input[type="submit"]:hover {
             background-color: #1b254f;
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 5px;
         }
         
         .profile-container {
@@ -139,7 +164,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            padding: 20px;
+            padding: 10px;
         }
         
         .profile-card {
@@ -147,15 +172,14 @@
             color: white;
             text-align: center;
             padding: 20px;
-            width: 300px;
+            width: 280px;
             border-radius: 10px;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
         }
         
         .profilepic {
-            width: 100px;  
-            height: 100px;
+            width: 80px;  
+            height: 80px;
             border-radius: 50%;
             object-fit: cover; 
             display: block;
@@ -164,27 +188,29 @@
         }
         
         .profile-card h3 {
-            font-size: 18px;
+            font-size: 16px;
             margin-bottom: 5px;
         }
         
         .profile-card p {
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.5;
+            margin-bottom: 5px;
         }
 
         a {
-            text-decoration: none; /*Removes underscore in links*/
+            text-decoration: none;
         }
         
-        .profile:hover 
-        {
-            cursor: pointer; /* Changes the cursor to a pointing hand when avatar is hovered*/
+        .profile {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 50%;
         }
         
         /* Styling for the pop-up container */
-        .popup-container 
-        {
+        .popup-container {
             display: none;
             position: fixed;
             top: 50%;
@@ -193,62 +219,95 @@
             background: #f9f9f9;
             padding: 20px;
             width: 300px;
+            max-width: 90%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             z-index: 1000;
         }
         
-        .popup-container h2 
-        {
+        .popup-container h2 {
             margin: 0 0 20px;
+            text-align: center;
         }
         
-        .popup-container input 
-        {
+        .popup-container input {
             display: block;
             width: 100%;
-            margin: 10px -10px; /* For the form input to be at the middle and not touch the edge*/
+            margin: 10px 0;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
         
-        .popup-container button 
-        {
-             width: 100%;
-             padding: 10px;
-             background-color: #eeb4c2;
-             color: #372d2f;
-             cursor: pointer;
-             border-radius: 5px;
-             border-color: 2px solid #372d2f;
+        .popup-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #eeb4c2;
+            color: #372d2f;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 2px solid #372d2f;
         }
         
-        .popup-container button:hover 
-        {
-              background-color: #eaccd1;
+        .popup-container button:hover {
+            background-color: #eaccd1;
+        }
+        
+        #toggle-form-text {
+            margin: 10px 0;
+            text-align: center;
         }
         
         /* Overlay styling */
-        .overlay 
-        {
-             display: none;
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             background: rgba(0, 0, 0, 0.5);
-             z-index: 999;
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
         
+        /* Media Queries for Responsive Design */
         @media (max-width: 768px) {
-            .profile-container {
+            .navbar {
                 flex-direction: column;
-                align-items: center;
+                gap: 15px;
             }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .profile {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .contact, .profile-card {
+                padding: 15px;
+            }
+        }
         
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            
             .profile-card {
+                width: 100%;
+            }
+            
+            .popup-container {
                 width: 90%;
             }
         }
@@ -261,18 +320,18 @@
         <div class="navbar">
             <img src="imgs/LG.jpg" alt="Logo" class="logo">
             <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li class="workspace"><a href="workspace.html">Workspace</a>
-                    <div class="dropdown-content">
-                        <a href="workspace.html">Pomodoro</a>
-                        <a href="calendar.html">Calendar</a>
-                        <a href="flashcards.html">Flashcards</a>
-                    </div>
-                </li>
-                <li><a href="contacts.html">Contact Us</a></li>
-            </ul>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="workspace"><a href="workspace.html">Workspace</a>
+                        <div class="dropdown-content">
+                            <a href="workspace.html">Pomodoro</a>
+                            <a href="calendar.html">Calendar</a>
+                            <a href="flashcards.html">Flashcards</a>
+                        </div>
+                    </li>
+                    <li><a href="contacts.html">Contact Us</a></li>
+                </ul>
             </nav>
             <img src="imgs/profile-icon.png" alt="Avatar" class="profile" onclick="showLogin()">
         </div>
@@ -280,7 +339,7 @@
         <!-- Login pop-up -->
         <div class="overlay" id="overlay" onclick="closePopup()"></div>
 
-         <!-- Pop-up Container -->
+        <!-- Pop-up Container -->
         <div class="popup-container" id="popup">
             <h2 id="popup-heading">Login</h2>
             <form id="popup-form">
@@ -323,7 +382,7 @@
                     <a href="https://www.facebook.com/francheskanicab" target="_blank">
                         <p style="color: white">Facebook: Nica Francheska</p>
                     </a>
-                    <p style="color: white">Phone Number: 09561980170</p>
+                    <p style="color: white">Phone: 09561980170</p>
                 </div>
 
                 <div class="profile-card">
@@ -335,7 +394,7 @@
                     <a href="https://www.facebook.com/riguermackenzie/" target="_blank">
                         <p style="color: white">Facebook: Mackenzie Riguer</p>
                     </a>
-                    <p style="color: white">Phone Number: 09164569882</p>
+                    <p style="color: white">Phone: 09164569882</p>
                 </div>
 
                 <div class="profile-card">
@@ -347,17 +406,14 @@
                     <a href="https://www.facebook.com/amberjillian.caras" target="_blank">
                         <p style="color: white">Facebook: Amber Jillian Caras</p>
                     </a>
-                    <p style="color: white">Phone Number: 09874526150</p>
+                    <p style="color: white">Phone: 09874526150</p>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <script>
-        function showLogin() 
-        {
+        function showLogin() {
             document.getElementById("popup").style.display = "block";
             document.getElementById("overlay").style.display = "block";
         
@@ -373,9 +429,7 @@
             `;
         }
         
-        function showSignUp() 
-        {
-            
+        function showSignUp() {
             // Switch the pop-up to Sign Up
             document.getElementById("popup-heading").innerText = "Sign Up";
             document.getElementById("popup-form").innerHTML = `
@@ -389,12 +443,10 @@
             `;
         }
         
-        function closePopup() 
-        {
-             document.getElementById("popup").style.display = "none";
-             document.getElementById("overlay").style.display = "none";
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
         }
     </script>
-
 </body>
 </html>
