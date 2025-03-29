@@ -229,6 +229,70 @@
            text-align: center;
            border-radius: 1em;
         }
+
+        /* To-Do List Styles */
+        .todo-container-wide {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            margin: auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .input-container-wide {
+            display: flex;
+            gap: 10px;
+        }
+        .todo-input-wide {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .todo-button-wide {
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .todo-button-wide:hover {
+            background: #218838;
+        }
+        .todo-list-wide {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .todo-list-wide li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #eee;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+        }
+        .close-btn-wide {
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        .close-btn-wide:hover {
+            background: darkred;
+        }
  
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -320,6 +384,15 @@
           <button id="stop">STOP</button>
         </div>
       </div>
+        <!-- To-Do List -->
+        <div class="todo-container-wide">
+            <h2>To-Do List</h2>
+            <div class="input-container-wide">
+                <input type="text" id="todo-input-wide" class="todo-input-wide" placeholder="Add a new task">
+                <button class="todo-button-wide" onclick="addTask()">Add</button>
+            </div>
+            <ul id="todo-list-wide" class="todo-list-wide"></ul>
+        </div>
         
     </div>
     
@@ -457,6 +530,27 @@
               clearInterval(myInterval);
             }
           });
+
+        // To-do list
+        function addTask() {
+            const input = document.getElementById("todo-input-wide");
+            const taskText = input.value.trim();
+            if (taskText === "") return;
+
+            const li = document.createElement("li");
+            li.textContent = taskText;
+
+            const closeButton = document.createElement("button");
+            closeButton.textContent = "X";
+            closeButton.className = "close-btn-wide";
+            closeButton.onclick = function() {
+                li.remove();
+            };
+
+            li.appendChild(closeButton);
+            document.getElementById("todo-list-wide").appendChild(li);
+            input.value = "";
+        }
     </script>
 </body>
 </html>
