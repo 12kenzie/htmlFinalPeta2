@@ -7,20 +7,187 @@
     <link rel="stylesheet" href="style.css">
     <title>Dreamis — Workspace</title>
     <style>
-      
+      body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Lilita One', sans-serif;
+          overflow-x: hidden; /* Prevents horizontal scrolling */
+        }
+        
+        /* Container */
+        .container {
+          width: 100%;
+          min-height: 100vh; /* Allows the container to expand with content */
+          background-image: linear-gradient(rgba(255, 182, 193, 0.3), rgba(255, 192, 203, 0.7)), url('1.jpg');
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-attachment: fixed; /* Ensures background stays fixed */
+          padding: 0 8%;
+          box-sizing: border-box;
+        }
+        
+        /* Navbar */
+        .navbar {
+          height: auto; /* Adjust height dynamically */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 0;
+        }
+        
+        .logo {
+          width: 50px;
+          cursor: pointer;
+          border-radius: 50%;
+        }
+        
+        nav ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+        }
+        
+        nav ul li {
+          margin-left: 40px;
+        }
+        
+        nav ul li a {
+          text-decoration: none;
+          color: #372d2f;
+          font-size: 16px;
+          transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+          color: #ff69b4;
+        }
+        
+        /* Hero Section */
+        .row {
+          display: flex;
+          flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+          align-items: center;
+          justify-content: space-between;
+          min-height: 88vh; /* Ensures content doesn’t get cut off */
+        }
+        
+        .col {
+          flex: 1;
+          min-width: 300px;
+        }
+        
+        h1 {
+          color: #372d2f;
+          font-size: 75px;
+        }
+        
+        p {
+          color: #372d2f;
+          font-size: 14px;
+          line-height: 20px;
+        }
+        
+        /* Button */
+        button {
+          width: 180px;
+          color: white;
+          font-size: 14px;
+          padding: 12px 0;
+          background: #ff69b4; /* Solid pink */
+          border: none;
+          border-radius: 20px;
+          outline: none;
+          margin-top: 20px;
+          transition: background 0.3s, transform 0.3s;
+          cursor: pointer;
+        }
+        
+        button:hover {
+          background: #ff1493;
+          transform: scale(1.05);
+        }
+        
+        /* Cards */
+        .card {
+          width: 100%;
+          max-width: 250px;
+          height: 230px;
+          display: inline-block;
+          border-radius: 10px;
+          padding: 15px 25px;
+          box-sizing: border-box;
+          cursor: pointer;
+          margin: 10px;
+          background-position: center;
+          background-size: cover;
+          transition: transform 0.5s, box-shadow 0.3s;
+          text-align: center;
+          color: #372d2f;
+        }
+        
+        .card1 { background-image: url('c1.jpg'); }
+        .card2 { background-image: url('c2.jpg'); }
+        .card3 { background-image: url('c3.jpg'); }
+        .card4 { background-image: url('c4.jpg'); }
+        
+        .card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        h5 {
+          color: #372d2f;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          margin-bottom: 10px;
+        }
+        
+        /* Fix for Background Cutting Off */
+        .container::after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .navbar {
+            flex-direction: column;
+            text-align: center;
+          }
+        
+          nav ul {
+            flex-direction: column;
+          }
+        
+          nav ul li {
+            margin: 10px 0;
+          }
+        
+          .row {
+            flex-direction: column;
+            text-align: center;
+            min-height: auto;
+          }
+        
+          .card {
+            width: 100%;
+            max-width: 250px;
+          }
+        }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="navbar">
             <img src="LG.jpg" alt="Logo" class="logo">
             <nav>
                 <ul>
-                    <li><a href="HOME.html">Home</a></li>
-                    <li><a href="ABT.html">About Us</a></li>
-                    <li><a href="WORKS.html">Workspace</a></li>
-                    <li><a href="CONTACT.html">Contact Us</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="workspace.html">Workspace</a></li>
+                    <li><a href="contacts.html">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
