@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +39,7 @@
           padding: 20px 0;
         }
 
-        /* Workspace dropown */
+        /* Workspace dropdown */
         /* Dropdown Styles */
         .dropdown {
             position: relative;
@@ -101,7 +100,7 @@
           flex-wrap: wrap; /* Allows items to wrap on smaller screens */
           align-items: center;
           justify-content: space-between;
-          min-height: 88vh; /* Ensures content doesn’t get cut off */
+          min-height: 88vh; /* Ensures content doesn't get cut off */
         }
         
         .col {
@@ -264,7 +263,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-            border-radius: 5px
+            border-radius: 5px;
             border: 3px solid #372d2f;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             font-family: "Poppins";
@@ -306,6 +305,51 @@
             background: darkred;
         }
         
+        /* Search Bar Styles */
+        .search-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 3px solid #372d2f;
+        }
+        .search-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #372d2f;
+            border-radius: 20px;
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            margin-right: 10px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #ff69b4;
+            box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+        }
+        .search-button {
+            width: auto;
+            padding: 10px 20px;
+            background: #372d2f;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: "Poppins", sans-serif;
+            transition: background 0.3s;
+        }
+        .search-button:hover {
+            background: #ff69b4;
+        }
+        .highlighted {
+            background-color: #ffeb3b;
+            font-weight: bold;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
           .navbar {
@@ -330,6 +374,16 @@
           .card {
             width: 100%;
             max-width: 250px;
+          }
+          
+          .search-container {
+            flex-direction: column;
+          }
+          
+          .search-input {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 10px;
           }
         }
     </style>
@@ -377,6 +431,12 @@
             <button class="calendar-button" onclick="nextMonth()">&gt;</button>
         </div>
         <div class="calendar-days" id="calendar-days"></div>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="Search tasks by name, date or time...">
+        <button class="search-button" onclick="searchTasks()">Search</button>
     </div>
     
     <!-- Schedule table -->
@@ -524,6 +584,82 @@
             localStorage.setItem("tasks", JSON.stringify(tasks));
             fetchTasks();
         }
+        
+        // Search functionality
+        function searchTasks() {
+            const searchTerm = document.getElementById("search-input").value.toLowerCase();
+            if (!searchTerm) {
+                fetchTasks(); // If search is empty, show all tasks
+                return;
+            }
+            
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            const tableBody = document.getElementById("schedule-body");
+            tableBody.innerHTML = "";
+            
+            const filteredTasks = tasks.filter(task => {
+                return (
+                    task.name.toLowerCase().includes(searchTerm) ||
+                    task.date.includes(searchTerm) ||
+                    task.time.includes(searchTerm)
+                );
+            });
+            
+            if (filteredTasks.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="4">No tasks found matching "${searchTerm}"</td></tr>`;
+                return;
+            }
+            
+            filteredTasks.forEach((task, index) => {
+                // Find the original index in the tasks array
+                const originalIndex = tasks.findIndex(t => 
+                    t.name === task.name && t.date === task.date && t.time === task.time
+                );
+                
+                // Highlight the matching text
+                let highlightedName = task.name;
+                let highlightedDate = task.date;
+                let highlightedTime = task.time;
+                
+                if (task.name.toLowerCase().includes(searchTerm)) {
+                    const regex = new RegExp(searchTerm, 'gi');
+                    highlightedName = task.name.replace(regex, match => `<span class="highlighted">${match}</span>`);
+                }
+                
+                if (task.date.includes(searchTerm)) {
+                    const regex = new RegExp(searchTerm, 'g');
+                    highlightedDate = task.date.replace(regex, match => `<span class="highlighted">${match}</span>`);
+                }
+                
+                if (task.time.includes(searchTerm)) {
+                    const regex = new RegExp(searchTerm, 'g');
+                    highlightedTime = task.time.replace(regex, match => `<span class="highlighted">${match}</span>`);
+                }
+                
+                const row = `<tr>
+                    <td>${highlightedName}</td>
+                    <td>${highlightedDate}</td>
+                    <td>${highlightedTime}</td>
+                    <td><button class='delete-button' onclick='removeTask(${originalIndex})'>X</button></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+        
+        // Add event listener for Enter key in search input
+        document.getElementById("search-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                searchTasks();
+            }
+        });
+        
+        // Add reset search when input is cleared
+        document.getElementById("search-input").addEventListener("input", function(event) {
+            if (this.value === "") {
+                fetchTasks();
+            }
+        });
     </script>
 </body>
 </html>
