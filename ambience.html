@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Lilita+One" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <title>Dreamis — Workspace</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
@@ -100,7 +98,7 @@
           flex-wrap: wrap; /* Allows items to wrap on smaller screens */
           align-items: center;
           justify-content: space-between;
-          min-height: 88vh; /* Ensures content doesn’t get cut off */
+          min-height: 88vh; /* Ensures content doesn't get cut off */
         }
         
         .col {
@@ -152,6 +150,278 @@
           clear: both;
         }
 
+        /* Login Popup Styles */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            width: 300px;
+        }
+
+        .popup-container h2 {
+            margin-top: 0;
+        }
+
+        .popup-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .popup-container button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Audio Player Styles */
+        .search-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        
+        .search-container input {
+            width: 70%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-container input:focus {
+            border-color: #ff69b4;
+            box-shadow: 0 0 8px rgba(255, 105, 180, 0.3);
+        }
+        
+        .search-container button {
+            padding: 12px 24px;
+            margin-left: 10px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            width: auto;
+        }
+        
+        .search-container button:hover {
+            background-color: #ff1493;
+        }
+        
+        .audio-player-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+        }
+        
+        .player-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .genre-badge {
+            background-color: #ff69b4;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .youtube-link {
+            color: #ff69b4;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .youtube-link:hover {
+            text-decoration: underline;
+        }
+        
+        .youtube-link svg {
+            margin-right: 5px;
+        }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .control-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f3f3f3;
+            transition: all 0.2s;
+        }
+        
+        .control-button:hover {
+            background-color: #e1e1e1;
+        }
+        
+        .control-button.active {
+            background-color: #ff69b4;
+            color: white;
+        }
+        
+        .control-button svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .progress-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #e1e1e1;
+            border-radius: 3px;
+            margin: 0 15px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 30%; /* Initial demo value */
+            background-color: #ff69b4;
+            border-radius: 3px;
+            position: absolute;
+        }
+        
+        .timestamp {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .psychology-section {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .psychology-section h3 {
+            margin-bottom: 15px;
+            color: #372d2f;
+        }
+        
+        .psychology-content {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        /* Audio List Container */
+        .audio-list-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .audio-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .audio-item {
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .audio-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .audio-info {
+            text-align: left;
+            flex-grow: 1;
+        }
+        
+        .audio-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #372d2f;
+        }
+        
+        .audio-genre {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .play-audio-btn {
+            width: auto;
+            padding: 8px 16px;
+            font-size: 12px;
+            margin-top: 0;
+        }
+        
+        /* Genre selection styles */
+        .genre-selector {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .genre-selector select {
+            padding: 8px 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 14px;
+        }
  
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -173,7 +443,19 @@
             text-align: center;
             min-height: auto;
           }
-        
+          
+          .search-container input {
+              width: 60%;
+          }
+          
+          .audio-controls {
+              flex-wrap: wrap;
+          }
+          
+          .progress-container {
+              margin-top: 15px;
+              width: 100%;
+          }
         }
     </style>
 </head>
@@ -201,27 +483,105 @@
         </div>
 
         <!-- Login pop-up -->
-            <div class="overlay" id="overlay" onclick="closePopup()"></div>
+        <div class="overlay" id="overlay" onclick="closePopup()"></div>
 
-            <!-- Pop-up Container -->
-            <div class="popup-container" id="popup">
-                <h2 id="popup-heading">Login</h2>
-                <form id="popup-form">
-                    <input type="text" placeholder="Username" required>
-                    <input type="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
-                </form>
-                <p id="toggle-form-text">
-                    Don't have an account? <span onclick="showSignUp()" style="color: blue; cursor: pointer;">Sign Up</span>
-                </p>
-                <button onclick="closePopup()">Close</button>
-            </div>
+        <!-- Pop-up Container -->
+        <div class="popup-container" id="popup">
+            <h2 id="popup-heading">Login</h2>
+            <form id="popup-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="toggle-form-text">
+                Don't have an account? <span onclick="showSignUp()" style="color: blue; cursor: pointer;">Sign Up</span>
+            </p>
+            <button onclick="closePopup()">Close</button>
+        </div>
         
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="music-search" placeholder="Search for music...">
+            <button onclick="searchMusic()">Search</button>
+        </div>
+        
+        <!-- Audio Player -->
+        <div class="audio-player-container" id="audio-player">
+            <div class="player-header">
+                <div class="genre-badge" id="genre-badge">Genre</div>
+                <a href="#" class="youtube-link" id="youtube-link" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                    </svg>
+                    Watch on YouTube
+                </a>
+            </div>
+            
+            <div class="audio-controls">
+                <button class="control-button play-pause" id="play-pause-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+                
+                <button class="control-button loop" id="loop-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 1l4 4-4 4"></path>
+                        <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                        <path d="M7 23l-4-4 4-4"></path>
+                        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                    </svg>
+                </button>
+                
+                <div class="progress-container">
+                    <span class="timestamp" id="current-time">00:00</span>
+                    <div class="progress-bar" id="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                    <span class="timestamp" id="duration">00:00</span>
+                </div>
+            </div>
+            
+            <!-- Hidden audio element -->
+            <audio id="audio-element"></audio>
+            
+            <!-- Genre selection -->
+            <div class="genre-selector">
+                <label for="genre-select">Filter by Genre: </label>
+                <select id="genre-select" onchange="filterByGenre(this.value)">
+                    <option value="">All Genres</option>
+                    <option value="Breakcore">Breakcore</option>
+                    <option value="Brown Noise">Brown Noise</option>
+                    <option value="Classical">Classical Music</option>
+                    <option value="Liquid DnB">Liquid DnB</option>
+                    <option value="Lofi">Lofi</option>
+                    <option value="Math Rock">Math Rock</option>
+                    <option value="Nature">Nature Sound</option>
+                    <option value="White Noise">White Noise</option>
+                </select>
+            </div>
+            
+            <div class="psychology-section">
+                <h3>Psychological Impact</h3>
+                <div class="psychology-content" id="psychology-content">
+                    <p>Select a song to see its genre's psychological effects and benefits.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Audio List -->
+        <div class="audio-list-container">
+            <h2>Available Audio Tracks</h2>
+            <ul class="audio-list" id="audio-list">
+                <!-- Audio items will be dynamically added here -->
+            </ul>
+        </div>
     </div>
     
     <script>
-        function showLogin() 
-        {
+        // Login/Signup functionality
+        function showLogin() {
             document.getElementById("popup").style.display = "block";
             document.getElementById("overlay").style.display = "block";
         
@@ -237,9 +597,7 @@
             `;
         }
         
-        function showSignUp() 
-        {
-            
+        function showSignUp() {
             // Switch the pop-up to Sign Up
             document.getElementById("popup-heading").innerText = "Sign Up";
             document.getElementById("popup-form").innerHTML = `
@@ -253,11 +611,366 @@
             `;
         }
         
-        function closePopup() 
-        {
-             document.getElementById("popup").style.display = "none";
-             document.getElementById("overlay").style.display = "none";
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
         
+        // Audio Library - This would be your database/collection of songs
+        const audioLibrary = [
+            {
+                id: 1,
+                title: "Peaceful Morning",
+                genre: "Lofi",
+                dropboxLink: "https://www.dropbox.com/s/example1/peaceful_morning.mp3?dl=1",
+                youtubeLink: "https://www.youtube.com/watch?v=example1"
+            },
+            {
+                id: 2,
+                title: "Forest Sounds",
+                genre: "Nature",
+                dropboxLink: "https://www.dropbox.com/s/example2/forest_sounds.mp3?dl=1",
+                youtubeLink: "https://www.youtube.com/watch?v=example2"
+            },
+            {
+                id: 3,
+                title: "Moonlight Sonata",
+                genre: "Classical",
+                dropboxLink: "https://www.dropbox.com/s/example3/moonlight_sonata.mp3?dl=1",
+                youtubeLink: "https://www.youtube.com/watch?v=example3"
+            },
+            {
+                id: 4,
+                title: "Liquid Dreams",
+                genre: "Liquid DnB",
+                dropboxLink: "https://www.dropbox.com/s/example4/liquid_dreams.mp3?dl=1",
+                youtubeLink: "https://www.youtube.com/watch?v=example4"
+            },
+            {
+                id: 5,
+                title: "Study Focus",
+                genre: "Brown Noise",
+                dropboxLink: "https://www.dropbox.com/s/example5/study_focus.mp3?dl=1",
+                youtubeLink: "https://www.youtube.com/watch?v=example5"
+            }
+        ];
+        
+        // Audio Player Functionality
+        let audioElement = document.getElementById('audio-element');
+        let playPauseBtn = document.getElementById('play-pause-btn');
+        let loopBtn = document.getElementById('loop-btn');
+        let progressBar = document.getElementById('progress-bar');
+        let progress = document.getElementById('progress');
+        let currentTimeDisplay = document.getElementById('current-time');
+        let durationDisplay = document.getElementById('duration');
+        let youtubeLink = document.getElementById('youtube-link');
+        let genreBadge = document.getElementById('genre-badge');
+        let psychologyContent = document.getElementById('psychology-content');
+        let audioList = document.getElementById('audio-list');
+        
+        // Audio player variables
+        let isPlaying = false;
+        let isLooping = false;
+        let currentTrack = null;
+        
+        // Genre psychology information
+        const genrePsychology = {
+            'Breakcore': "Breakcore is characterized by fast, fragmented breakbeats and distorted samples. The high tempo and unpredictable nature can increase alertness and energy levels. Some listeners report that the complex rhythms help with focus for tasks requiring creative problem-solving. The genre's chaotic structure can provide a cathartic release for feelings of anxiety or tension.",
+            
+            'Brown Noise': "Brown noise contains low-frequency sounds that decrease in power as frequency increases. Research suggests it can be more effective than white noise for deep relaxation and sleep improvement. The deep, rumbling qualities of brown noise are particularly effective at masking low-frequency environmental sounds. It has been found to help those with ADHD focus and may reduce symptoms of tinnitus in some individuals.",
+            
+            'Classical': "Classical music, especially compositions by Mozart and Bach, has been extensively studied for its cognitive benefits. Regular listening may enhance spatial-temporal reasoning, verbal abilities, and reading comprehension. The structured and complex nature of classical compositions can improve focus and attention span. The emotional depth of classical music can also regulate mood and reduce stress levels.",
+            
+            'Liquid DnB': "Liquid Drum and Bass combines the energetic rhythm patterns of drum and bass with melodic, often atmospheric elements. The juxtaposition of high-energy beats with soothing melodies creates a balance that can be simultaneously energizing and calming. Many listeners report enhanced productivity when working on repetitive tasks, as the consistent beat provides motivation while the melodic elements prevent mental fatigue.",
+            
+            'Lofi': "Lo-fi hip hop, with its deliberately imperfect sound quality and relaxed beats, creates a nostalgic and comforting atmosphere. Research indicates it can reduce anxiety and create a sense of companionship during solitary activities. The genre's repetitive nature and mid-tempo beats make it particularly effective for studying and reading, as it provides rhythm without linguistic distractions.",
+            
+            'Math Rock': "Math rock features complex time signatures, angular melodies, and intricate rhythmic structures. The cognitive challenge of following these complex patterns can engage the brain's problem-solving centers. Some listeners report improved concentration on complex logical tasks when listening to math rock. The genre's intellectual engagement can provide a form of 'active relaxation' for analytical thinkers.",
+            
+            'Nature': "Nature sounds engage the parasympathetic nervous system, promoting rest and digestion responses. Research shows they can lower blood pressure, heart rate, and stress hormone levels. Regular listening can improve mood and overall mental wellbeing. Nature sounds have been successfully used in therapeutic settings to help manage anxiety disorders and sleep disturbances.",
+            
+            'White Noise': "White noise contains all frequencies at equal intensity. It works by masking background sounds that might otherwise distract or disturb. Studies show it can improve sleep quality and help with focus for some people with attention difficulties. In healthcare settings, white noise machines are sometimes used to protect patient privacy and create a more soothing environment."
+        };
+        
+        // Initialize the page
+        window.onload = function() {
+            // Populate the audio list
+            displayAudioList(audioLibrary);
+        };
+        
+        // Display audio list
+        function displayAudioList(audioList) {
+            const audioListElement = document.getElementById('audio-list');
+            audioListElement.innerHTML = '';
+            
+            if (audioList.length === 0) {
+                audioListElement.innerHTML = '<p>No audio tracks found.</p>';
+                return;
+            }
+            
+            audioList.forEach(audio => {
+                const listItem = document.createElement('li');
+                listItem.className = 'audio-item';
+                listItem.innerHTML = `
+                    <div class="audio-info">
+                        <div class="audio-title">${audio.title}</div>
+                        <div class="audio-genre">${audio.genre}</div>
+                    </div>
+                    <button class="play-audio-btn" onclick="loadTrack(${audio.id})">Play</button>
+                `;
+                audioListElement.appendChild(listItem);
+            });
+        }
+        
+        // Load track
+        function loadTrack(trackId) {
+            currentTrack = audioLibrary.find(track => track.id === trackId);
+            
+            if (currentTrack) {
+                // Set audio source to Dropbox link
+                audioElement.src = currentTrack.dropboxLink;
+                
+                // Set YouTube link
+                youtubeLink.href = currentTrack.youtubeLink;
+                
+                // Update UI
+                genreBadge.textContent = currentTrack.genre;
+                psychologyContent.innerHTML = `<p>${genrePsychology[currentTrack.genre] || "No psychological information available for this genre."}</p>`;
+                
+                // Reset UI
+                progress.style.width = '0%';
+                currentTimeDisplay.textContent = '00:00';
+                
+                // Play the track
+                isPlaying = false; // Set to false so togglePlayPause will start playing
+                togglePlayPause();
+            }
+        }
+        
+        // Filter by genre
+        function filterByGenre(genre) {
+            if (genre === '') {
+                displayAudioList(audioLibrary);
+            } else {
+                const filteredList = audioLibrary.filter(audio => audio.genre === genre);
+                displayAudioList(filteredList);
+            }
+        }
+        
+        // Search functionality
+        function searchMusic() {
+            const searchText = document.getElementById('music-search').value.toLowerCase();
+            
+            if (searchText === '') {
+                displayAudioList(audioLibrary);
+                return;
+            }
+            
+            const filteredList = audioLibrary.filter(audio => 
+                audio.title.toLowerCase().includes(searchText) || 
+                audio.genre.toLowerCase().includes(searchText)
+            );
+            
+            displayAudioList(filteredList);
+        }
+        
+        // Play/Pause functionality
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        
+        function togglePlayPause() {
+            if (!audioElement.src) {
+                alert("Please select a track from the list below.");
+                return;
+            }
+            
+            if (isPlaying) {
+                audioElement.pause();
+            } else {
+                audioElement.play();
+            }
+            
+            isPlaying = !isPlaying;
+            updatePlayPauseButton();
+        }
+        
+        function updatePlayPauseButton() {
+            if (isPlaying) {
+                playPauseBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                `;
+            } else {
+                playPauseBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                `;
+            }
+        }
+        
+        // Loop functionality
+        loopBtn.addEventListener('click', toggleLoop);
+        
+        function toggleLoop() {
+            isLooping = !isLooping;
+            audioElement.loop = isLooping;
+            loopBtn.classList.toggle('active');
+        }
+        
+        // Progress bar functionality
+        progressBar.addEventListener('click', setAudioProgress);
+        
+        function setAudioProgress(e) {
+            if (!audioElement.src) return;
+            
+            const width = this.clientWidth;
+            const clickPosition = e.offsetX;
+            const duration = audioElement.duration;
+            
+            audioElement.currentTime = (clickPosition / width) * duration;
+        }
+        
+        // Update progress as audio plays
+        audioElement.addEventListener('timeupdate', updateProgress);
+        
+        function updateProgress() {
+        if (isNaN(audioElement.duration)) return;
+        
+        const currentTime = audioElement.currentTime;
+        const duration = audioElement.duration;
+        
+        // Calculate percentage of playback completed
+        const progressPercent = (currentTime / duration) * 100;
+        progress.style.width = `${progressPercent}%`;
+        
+        // Update time displays
+        currentTimeDisplay.textContent = formatTime(currentTime);
+        durationDisplay.textContent = formatTime(duration);
+    }
+    
+    // Format time in MM:SS format
+    function formatTime(time) {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    // Handle audio events
+    audioElement.addEventListener('ended', function() {
+        if (!isLooping) {
+            isPlaying = false;
+            updatePlayPauseButton();
+        }
+    });
+    
+    audioElement.addEventListener('loadedmetadata', function() {
+        durationDisplay.textContent = formatTime(audioElement.duration);
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Space bar toggles play/pause
+        if (e.code === 'Space' && document.activeElement.tagName !== 'INPUT') {
+            e.preventDefault();
+            togglePlayPause();
+        }
+        
+        // Left arrow seeks backward 5 seconds
+        if (e.code === 'ArrowLeft' && audioElement.src) {
+            audioElement.currentTime = Math.max(audioElement.currentTime - 5, 0);
+        }
+        
+        // Right arrow seeks forward 5 seconds
+        if (e.code === 'ArrowRight' && audioElement.src) {
+            audioElement.currentTime = Math.min(audioElement.currentTime + 5, audioElement.duration);
+        }
+        
+        // L key toggles loop
+        if (e.code === 'KeyL') {
+            toggleLoop();
+        }
+    });
+    
+    // Volume control
+    const volumeSlider = document.createElement('input');
+    volumeSlider.type = 'range';
+    volumeSlider.min = 0;
+    volumeSlider.max = 1;
+    volumeSlider.step = 0.1;
+    volumeSlider.value = 1;
+    volumeSlider.className = 'volume-slider';
+    volumeSlider.style.width = '80px';
+    volumeSlider.style.marginLeft = '15px';
+    volumeSlider.addEventListener('input', function() {
+        audioElement.volume = this.value;
+    });
+    
+    // Add volume slider to controls
+    document.querySelector('.progress-container').appendChild(volumeSlider);
+    
+    // Add event listener for search input (Enter key)
+    document.getElementById('music-search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchMusic();
+        }
+    });
+    
+    // Save user preferences to local storage
+    function saveUserPreferences() {
+        const preferences = {
+            volume: audioElement.volume,
+            isLooping: isLooping,
+            lastGenre: document.getElementById('genre-select').value
+        };
+        localStorage.setItem('audioPlayerPreferences', JSON.stringify(preferences));
+    }
+    
+    // Load user preferences from local storage
+    function loadUserPreferences() {
+        const savedPreferences = localStorage.getItem('audioPlayerPreferences');
+        if (savedPreferences) {
+            const preferences = JSON.parse(savedPreferences);
+            audioElement.volume = preferences.volume;
+            volumeSlider.value = preferences.volume;
+            
+            if (preferences.isLooping) {
+                isLooping = true;
+                audioElement.loop = true;
+                loopBtn.classList.add('active');
+            }
+            
+            if (preferences.lastGenre) {
+                document.getElementById('genre-select').value = preferences.lastGenre;
+                filterByGenre(preferences.lastGenre);
+            }
+        }
+    }
+    
+    // Save preferences when page unloads
+    window.addEventListener('beforeunload', saveUserPreferences);
+    
+    // Load preferences when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        loadUserPreferences();
+        
+        // Start with first track preloaded but not playing
+        if (audioLibrary.length > 0) {
+            currentTrack = audioLibrary[0];
+            audioElement.src = currentTrack.dropboxLink;
+            genreBadge.textContent = currentTrack.genre;
+            youtubeLink.href = currentTrack.youtubeLink;
+            psychologyContent.innerHTML = `<p>${genrePsychology[currentTrack.genre] || "No psychological information available for this genre."}</p>`;
+        }
+    });
+    
+    // Handle issues with audio loading
+    audioElement.addEventListener('error', function() {
+        alert('There was an error loading the audio file. Please try another track.');
+        isPlaying = false;
+        updatePlayPauseButton();
+    });
     </script>
 </body>
 </html>
