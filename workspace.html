@@ -235,13 +235,13 @@
         }
         
         /* to remove the margins and padding from the list */
-        ul {
+        to-do ul {
           margin: 0;
           padding: 0;
         }
         
         /* to style the list items */
-        ul li {
+        to-do ul li {
           cursor: pointer;
           position: relative;
           padding: 12px 8px 12px 40px;
@@ -259,19 +259,19 @@
         }
         
         /* setting a color on the background when you hover */
-        ul li:hover {
+        to-do ul li:hover {
           background-color: rgb(255, 163, 77);
         }
         
         /* When clicked on, it will add a background color and strike out text */
-        ul li.checked {
+        to-do ul li.checked {
           background-color: rgba(18, 18, 43, 0.475);
           color: white;
           text-decoration: line-through;
         }
         
         /* add a checked mark when task is performed */
-        ul li.checked::before {
+        to-do ul li.checked::before {
           content: "";
           position: absolute;
           border-color: #fff;
