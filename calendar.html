@@ -257,6 +257,63 @@
             cursor: pointer;
             border-radius: 4px;
         }
+
+        /* For schedule table */
+        .schedule-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            margin: auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .schedule-table th {
+            background: #f4f4f4;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .input-container input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .add-button {
+            padding: 8px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .add-button:hover {
+            background: #218838;
+        }
+        .delete-button {
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .delete-button:hover {
+            background: darkred;
+        }
         
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -340,6 +397,28 @@
         <input type="number" id="popup-month" placeholder="Month (1-12)">
         <button onclick="setMonthYear()">Set</button>
     </div>
+
+    <!-- Schedule table -->
+    <div class="schedule-container">
+        <h2>Schedule Table</h2>
+        <div class="input-container">
+            <input type="text" id="task-name" placeholder="Task Name">
+            <input type="date" id="task-date">
+            <input type="time" id="task-time">
+            <button class="add-button" onclick="insertTask()">Add</button>
+        </div>
+        <table class="schedule-table" id="schedule-table">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="schedule-body"></tbody>
+        </table>
+    </div>
         
     </div>
     
@@ -421,6 +500,46 @@
         }
 
         renderCalendar();
+
+        /* For sched table */
+        document.addEventListener("DOMContentLoaded", fetchTasks);
+
+        function insertTask() {
+            const name = document.getElementById("task-name").value;
+            const date = document.getElementById("task-date").value;
+            const time = document.getElementById("task-time").value;
+            if (name && date && time) {
+                const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                tasks.push({ name, date, time });
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+                fetchTasks();
+                document.getElementById("task-name").value = "";
+                document.getElementById("task-date").value = "";
+                document.getElementById("task-time").value = "";
+            }
+        }
+        
+        function fetchTasks() {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            const tableBody = document.getElementById("schedule-body");
+            tableBody.innerHTML = "";
+            tasks.forEach((task, index) => {
+                const row = `<tr>
+                    <td>${task.name}</td>
+                    <td>${task.date}</td>
+                    <td>${task.time}</td>
+                    <td><button class='delete-button' onclick='removeTask(${index})'>X</button></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function removeTask(index) {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.splice(index, 1);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            fetchTasks();
+        }
     </script>
 </body>
 </html>
