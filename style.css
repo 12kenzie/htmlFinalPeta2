@@ -215,7 +215,16 @@ a {
 
 .footer-quote
 {
-  
+    font-family: Lilita One, sans-serif; 
+    margin-bottom: 10px; 
+    font-size: 30px;
+}
+
+
+.footer-quote span
+{
+  color: #c94b7c;
+  font-weight: bold;
 }
 
 /* Responsive Design */
