@@ -258,6 +258,27 @@
              z-index: 999;
         }
 
+        a {
+             text-decoration: none; /*Removes underscore in links*/
+             color: white; /* Makes the link colored white */
+        }
+        
+        .footer-quote
+        {
+            font-family: Lilita One, sans-serif; 
+            margin-bottom: 10px; 
+            font-size: 30px;
+            color: white;
+            margin-top: 40px
+        }
+        
+        
+        .footer-quote span
+        {
+          color: #c94b7c;
+          font-weight: bold;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .mission-cards {
@@ -343,6 +364,36 @@
                 <button>Start Your Journey</button>
             </div>
         </div>
+        <!-- Footer -->
+        <footer style="background-color: #372d2f; color: white; padding: 20px 40px; text-align: center;">
+        	<div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px;">
+                	<!-- Features Section -->
+                        <div>
+                        	<h3 style="font-family: Lilita One, sans-serif; margin-bottom: 10px;">FEATURES</h3>
+                                <ul style="list-style: none; padding: 0; font-family: Poppins, sans-serif; font-size: 16px; text-align: left;">
+                                    <li>Pomodoro</li>
+                                    <li>Calendar</li>
+                                    <li>Flashcards</li>
+                                </ul>
+                        </div>
+                        <div>
+                                <h1 class="footer-quote">
+                                    WHERE <span>CREATIVITY</span> MEETS <span>EFFICIENCY</span>
+                                </h1>
+                        </div>
+                        <!-- Contacts Section -->
+                        <div>
+                                <h3 style="font-family: Lilita One, sans-serif; margin-bottom: 10px;">CONTACTS</h3>
+                                <ul style="list-style: none; padding: 0; font-family: Poppins, sans-serif; font-size: 16px; text-align: left; color:white">
+                                    <li><a href="https://www.facebook.com/francheskanicab" target="_blank">Nica Francheska Bangalan</a></li>
+                                    <li><a href="https://www.facebook.com/riguermackenzie/" target="_blank">Mackenzie Riguer</a></li>
+                                    <li><a href="https://www.facebook.com/amberjillian.caras" target="_blank">Amber Jillian Caras</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                	<!-- Copyright Section -->
+               		<div style="margin-top: 20px; font-family: Poppins, sans-serif; font-size: 14px;">© 2025 Group 3</div>
+        </footer>
     </div>
     <script>
         function showLogin() 
