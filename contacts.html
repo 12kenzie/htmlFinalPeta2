@@ -243,6 +243,23 @@
             <img src="imgs/profile-icon.png" alt="Avatar" class="profile" onclick="showLogin()">
         </div>
 
+        <!-- Login pop-up -->
+        <div class="overlay" id="overlay" onclick="closePopup()"></div>
+
+         <!-- Pop-up Container -->
+        <div class="popup-container" id="popup">
+            <h2 id="popup-heading">Login</h2>
+            <form id="popup-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="toggle-form-text">
+                Don't have an account? <span onclick="showSignUp()" style="color: blue; cursor: pointer;">Sign Up</span>
+            </p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+
         <div class="contact">
             <h2>Get in Touch!</h2>
             <form action="#" method="post">
