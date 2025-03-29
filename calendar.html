@@ -180,7 +180,68 @@
           clear: both;
         }
 
- 
+         /* Calendar Styles */
+        .calendar-container {
+            width: 350px;
+            margin: auto;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .calendar-header h2 {
+            cursor: pointer;
+        }
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .calendar-day {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #eee;
+            border-radius: 4px;
+        }
+        /* Popup Style for Calendar Date and Month UI*/
+        .calendar-popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .calendar-popup input {
+            margin: 5px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .calendar-popup button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
           .navbar {
@@ -245,6 +306,24 @@
                 </p>
                 <button onclick="closePopup()">Close</button>
             </div>
+
+        <!-- Calendar -->
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button onclick="prevMonth()">&lt;</button>
+                <h2 id="calendar-month-year" onclick="openPopup()"></h2>
+                <button onclick="nextMonth()">&gt;</button>
+            </div>
+            <div class="calendar-days" id="calendar-days"></div>
+        </div>
+    </div>
+    
+    <div id="calendar-popup" class="calendar-popup">
+        <h3>Change Month & Year</h3>
+        <input type="number" id="popup-year" placeholder="Year">
+        <input type="number" id="popup-month" placeholder="Month (1-12)">
+        <button onclick="setMonthYear()">Set</button>
+    </div>
         
     </div>
     
@@ -286,7 +365,46 @@
         {
              document.getElementById("popup").style.display = "none";
              document.getElementById("overlay").style.display = "none";
+        }
         
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        function renderCalendar() {
+            document.getElementById("calendar-month-year").textContent = new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long', year: 'numeric' });
+            const daysContainer = document.getElementById("calendar-days");
+            daysContainer.innerHTML = "";
+            
+            let firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            for (let i = 0; i < firstDay; i++) {
+                daysContainer.innerHTML += '<div></div>';
+            }
+            for (let i = 1; i <= daysInMonth; i++) {
+                daysContainer.innerHTML += `<div class='calendar-day'>${i}</div>`;
+            }
+        }
+
+        function prevMonth() { currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } renderCalendar(); }
+        function nextMonth() { currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } renderCalendar(); }
+
+        function openPopup() {
+            document.getElementById("calendar-popup").style.display = "block";
+        }
+
+        function setMonthYear() {
+            let newYear = document.getElementById("popup-year").value;
+            let newMonth = document.getElementById("popup-month").value;
+            if (newYear && newMonth && !isNaN(newYear) && !isNaN(newMonth) && newMonth >= 1 && newMonth <= 12) {
+                currentYear = parseInt(newYear);
+                currentMonth = parseInt(newMonth) - 1;
+                renderCalendar();
+            }
+            document.getElementById("calendar-popup").style.display = "none";
+        }
+
+        renderCalendar();
     </script>
 </body>
 </html>
