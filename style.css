@@ -211,6 +211,7 @@ h5 {
 
 a {
      text-decoration: none; /*Removes underscore in links*/
+      color: white; /* Makes the link colored white */
 }
 
 .footer-quote
