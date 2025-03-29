@@ -213,6 +213,13 @@
             background: #eee;
             border-radius: 4px;
         }
+        .calendar-button
+        {
+            background-color: transparent;
+            color: #372d2f;
+            border-radius: 50%;
+            border: 3px solid #372d2f;
+        }
         /* Popup Style for Calendar Date and Month UI*/
         .calendar-popup {
             display: none;
@@ -310,9 +317,9 @@
         <!-- Calendar -->
         <div class="calendar-container">
             <div class="calendar-header">
-                <button onclick="prevMonth()">&lt;</button>
+                <button class="calendar-button" onclick="prevMonth()">&lt;</button>
                 <h2 id="calendar-month-year" onclick="openPopup()"></h2>
-                <button onclick="nextMonth()">&gt;</button>
+                <button class="calendar-button" onclick="nextMonth()">&gt;</button>
             </div>
             <div class="calendar-days" id="calendar-days"></div>
         </div>
