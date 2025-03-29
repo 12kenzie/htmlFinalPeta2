@@ -213,6 +213,11 @@ a {
      text-decoration: none; /*Removes underscore in links*/
 }
 
+.footer-quote
+{
+  
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
