@@ -182,14 +182,52 @@
           margin: 5px;
           cursor: pointer;
         }
+
         .button:hover {
           background-color: #372d2f;
           color: white;
         }
+        
         .hidden {
           display: block;
         }
         
+        .timer-display {
+          font-size: 5em;
+          margin-top: 20px;
+          font-weight: bold;
+        }
+        
+        #buttons {
+          margin-top: 20px;
+        }
+        
+        #start,
+        #stop {
+          background-color: #372d2f;
+          color: transparent;
+          border: 2px solid #372d2f;
+          padding: 10px 20px;
+          margin: 5px;
+          cursor: pointer;
+        }
+        
+        #stop:hover {
+          background-color: tomato;
+        }
+        #start:hover {
+          background-color: #219a52;
+        }
+         #timer-message {
+           color: white;
+           background-color: tomato;
+           display: none;
+           padding: .5em;
+           font-size: 1em;
+           text-align: center;
+           border-radius: 1em;
+        }
+ 
         /* Responsive Design */
         @media (max-width: 768px) {
           .navbar {
