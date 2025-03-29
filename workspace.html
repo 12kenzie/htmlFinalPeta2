@@ -37,6 +37,33 @@
           align-items: center;
           padding: 20px 0;
         }
+
+        /* Workspace dropown */
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .workspace:hover .dropdown-content {
+            display: block;
+        }
         
         .logo {
           width: 50px;
@@ -343,7 +370,12 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="workspace.html">Workspace</a></li>
+                    <li class="workspace"><a href="workspace.html">Workspace</a>
+                        <div class="dropdown-content">
+                            <a href="tasks.html">Tasks</a>
+                            <a href="calendar.html">Calendar</a>
+                        </div>
+                    </li>
                     <li><a href="contacts.html">Contact Us</a></li>
                 </ul>
             </nav>
