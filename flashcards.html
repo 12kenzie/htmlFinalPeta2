@@ -117,53 +117,160 @@
           font-size: 14px;
           line-height: 20px;
         }
+    
         
-        /* Button */
+        .base-styles {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f7fb;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
         button {
-          width: 180px;
-          color: white;
-          font-size: 14px;
-          padding: 12px 0;
-          background: #ff69b4; /* Solid pink */
-          border: none;
-          border-radius: 20px;
-          outline: none;
-          margin-top: 20px;
-          transition: background 0.3s, transform 0.3s;
-          cursor: pointer;
+            padding: 10px 15px;
+            background-color: #4a6eb5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.3s;
         }
         
         button:hover {
-          background: #ff1493;
-          transform: scale(1.05);
+            background-color: #3a5a99;
         }
         
-        /* Cards */
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .flashcard {
+            width: 100%;
+            height: 300px;
+            perspective: 1000px;
+            margin-bottom: 20px;
+        }
+        
         .card {
-          width: 100%;
-          max-width: 250px;
-          height: 230px;
-          display: inline-block;
-          border-radius: 10px;
-          padding: 15px 25px;
-          box-sizing: border-box;
-          cursor: pointer;
-          margin: 10px;
-          background-position: center;
-          background-size: cover;
-          transition: transform 0.5s, box-shadow 0.3s;
-          text-align: center;
-          color: #372d2f;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
         
-        .card1 { background-image: url('c1.jpg'); }
-        .card2 { background-image: url('c2.jpg'); }
-        .card3 { background-image: url('c3.jpg'); }
-        .card4 { background-image: url('c4.jpg'); }
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
         
-        .card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .front {
+            background-color: #ffffff;
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .back {
+            background-color: #e9f3fe;
+            color: #333;
+            transform: rotateY(180deg);
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .add-card-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .counter {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .no-cards {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .storage-status {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #999;
         }
         
         h5 {
@@ -362,7 +469,7 @@
         }
     </style>
 </head>
-<body>
+<body class="base-styles">
     <div class="container">
         <div class="navbar">
             <img src="imgs/LG.jpg" alt="Logo" class="logo">
@@ -404,6 +511,46 @@
         
     </div>
     
+    <div class="container base-styles">
+        <h1 class="base-styles" style="margin-bottom: 30px; color: #4a6eb5;">Interactive Flashcards</h1>
+        
+        <div class="controls base-styles">
+            <button id="prev-btn" class="base-styles">Previous</button>
+            <button id="next-btn" class="base-styles">Next</button>
+            <button id="flip-btn" class="base-styles">Flip Card</button>
+            <button id="add-btn" class="base-styles">Add Card</button>
+            <button id="reset-btn" class="base-styles">Reset Cards</button>
+        </div>
+        
+        <div id="flashcard-container" class="base-styles">
+            <div class="no-cards base-styles">
+                No flashcards yet. Click "Add Card" to create your first flashcard!
+            </div>
+        </div>
+        
+        <div class="counter base-styles">Card <span id="current-card" class="base-styles">0</span> of <span id="total-cards" class="base-styles">0</span></div>
+        
+        <div class="add-card-form base-styles" id="add-card-form">
+            <h2 class="base-styles" style="margin-bottom: 20px; color: #4a6eb5;">Add New Flashcard</h2>
+            <div class="form-group base-styles">
+                <label for="question" class="base-styles">Question/Front Side:</label>
+                <textarea id="question" class="base-styles" required></textarea>
+            </div>
+            <div class="form-group base-styles">
+                <label for="answer" class="base-styles">Answer/Back Side:</label>
+                <textarea id="answer" class="base-styles" required></textarea>
+            </div>
+            <div class="base-styles" style="display: flex; gap: 10px;">
+                <button id="save-card" class="base-styles">Save Card</button>
+                <button id="cancel-add" class="base-styles" style="background-color: #999;">Cancel</button>
+            </div>
+        </div>
+        
+        <div class="storage-status base-styles" id="storage-status"></div>
+    </div>
+    
+    
+    
     <script>
         function showLogin() 
         {
@@ -443,6 +590,255 @@
              document.getElementById("popup").style.display = "none";
              document.getElementById("overlay").style.display = "none";
         }
+
+        /* For flashcards */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const flashcardContainer = document.getElementById('flashcard-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const flipBtn = document.getElementById('flip-btn');
+            const addBtn = document.getElementById('add-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const addCardForm = document.getElementById('add-card-form');
+            const saveCardBtn = document.getElementById('save-card');
+            const cancelAddBtn = document.getElementById('cancel-add');
+            const questionInput = document.getElementById('question');
+            const answerInput = document.getElementById('answer');
+            const currentCardElement = document.getElementById('current-card');
+            const totalCardsElement = document.getElementById('total-cards');
+            const storageStatusElement = document.getElementById('storage-status');
+            
+            // Default cards
+            let flashcards = [
+                { question: "What is HTML?", answer: "HTML stands for HyperText Markup Language. It is the standard markup language for creating web pages." },
+                { question: "What is CSS?", answer: "CSS stands for Cascading Style Sheets. It describes how HTML elements should be displayed." },
+                { question: "What is JavaScript?", answer: "JavaScript is a programming language that enables interactive web pages and is an essential part of web applications." }
+            ];
+            
+            // Check if localStorage is available
+            let storageAvailable = false;
+            
+            try {
+                const test = 'test';
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                storageAvailable = true;
+                storageStatusElement.textContent = "Storage is available - your cards will be saved between sessions.";
+            } catch (e) {
+                storageAvailable = false;
+                storageStatusElement.textContent = "Storage is not available - your cards will not be saved between sessions.";
+            }
+            
+            // Safe storage functions
+            function saveToStorage(key, data) {
+                if (storageAvailable) {
+                    try {
+                        localStorage.setItem(key, JSON.stringify(data));
+                        return true;
+                    } catch (e) {
+                        console.warn('Failed to save to localStorage:', e);
+                        return false;
+                    }
+                }
+                return false;
+            }
+            
+            function loadFromStorage(key) {
+                if (storageAvailable) {
+                    try {
+                        const data = localStorage.getItem(key);
+                        return data ? JSON.parse(data) : null;
+                    } catch (e) {
+                        console.warn('Failed to load from localStorage:', e);
+                        return null;
+                    }
+                }
+                return null;
+            }
+            
+            function removeFromStorage(key) {
+                if (storageAvailable) {
+                    try {
+                        localStorage.removeItem(key);
+                        return true;
+                    } catch (e) {
+                        console.warn('Failed to remove from localStorage:', e);
+                        return false;
+                    }
+                }
+                return false;
+            }
+            
+            // Try to load saved cards
+            const savedCards = loadFromStorage('flashcards');
+            if (savedCards) {
+                flashcards = savedCards;
+            }
+            
+            let currentCardIndex = 0;
+            
+            // Function to render the current card
+            function renderCurrentCard() {
+                // Clear the container
+                flashcardContainer.innerHTML = '';
+                
+                if (flashcards.length === 0) {
+                    // No cards message
+                    flashcardContainer.innerHTML = `
+                        <div class="no-cards base-styles">
+                            No flashcards yet. Click "Add Card" to create your first flashcard!
+                        </div>
+                    `;
+                    currentCardElement.textContent = '0';
+                    totalCardsElement.textContent = '0';
+                    prevBtn.disabled = true;
+                    nextBtn.disabled = true;
+                    flipBtn.disabled = true;
+                    return;
+                }
+                
+                // Enable buttons
+                prevBtn.disabled = false;
+                nextBtn.disabled = false;
+                flipBtn.disabled = false;
+                
+                // Create flashcard element
+                const flashcardDiv = document.createElement('div');
+                flashcardDiv.className = 'flashcard base-styles';
+                
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'card base-styles';
+                
+                const frontDiv = document.createElement('div');
+                frontDiv.className = 'card-face front base-styles';
+                frontDiv.innerHTML = flashcards[currentCardIndex].question;
+                
+                const backDiv = document.createElement('div');
+                backDiv.className = 'card-face back base-styles';
+                backDiv.innerHTML = flashcards[currentCardIndex].answer;
+                
+                cardDiv.appendChild(frontDiv);
+                cardDiv.appendChild(backDiv);
+                flashcardDiv.appendChild(cardDiv);
+                
+                flashcardContainer.appendChild(flashcardDiv);
+                
+                // Update counter
+                currentCardElement.textContent = (currentCardIndex + 1).toString();
+                totalCardsElement.textContent = flashcards.length.toString();
+                
+                // Add click event for flipping
+                cardDiv.addEventListener('click', function() {
+                    this.classList.toggle('flipped');
+                });
+            }
+            
+            // Initialize
+            renderCurrentCard();
+            
+            // Previous button
+            prevBtn.addEventListener('click', function() {
+                if (currentCardIndex > 0) {
+                    currentCardIndex--;
+                    renderCurrentCard();
+                }
+            });
+            
+            // Next button
+            nextBtn.addEventListener('click', function() {
+                if (currentCardIndex < flashcards.length - 1) {
+                    currentCardIndex++;
+                    renderCurrentCard();
+                }
+            });
+            
+            // Flip button
+            flipBtn.addEventListener('click', function() {
+                if (flashcards.length > 0) {
+                    const card = document.querySelector('.card');
+                    card.classList.toggle('flipped');
+                }
+            });
+            
+            // Add card button
+            addBtn.addEventListener('click', function() {
+                addCardForm.style.display = 'block';
+                flashcardContainer.style.display = 'none';
+            });
+            
+            // Cancel add card
+            cancelAddBtn.addEventListener('click', function() {
+                addCardForm.style.display = 'none';
+                flashcardContainer.style.display = 'block';
+                questionInput.value = '';
+                answerInput.value = '';
+            });
+            
+            // Save new card
+            saveCardBtn.addEventListener('click', function() {
+                const question = questionInput.value.trim();
+                const answer = answerInput.value.trim();
+                
+                if (question && answer) {
+                    flashcards.push({ question, answer });
+                    
+                    // Try to save to localStorage
+                    saveToStorage('flashcards', flashcards);
+                    
+                    // Reset form
+                    questionInput.value = '';
+                    answerInput.value = '';
+                    
+                    // Close form
+                    addCardForm.style.display = 'none';
+                    flashcardContainer.style.display = 'block';
+                    
+                    // Show the new card
+                    currentCardIndex = flashcards.length - 1;
+                    renderCurrentCard();
+                } else {
+                    alert('Please fill out both fields!');
+                }
+            });
+            
+            // Reset cards
+            resetBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to reset all flashcards? This cannot be undone.')) {
+                    flashcards = [
+                        { question: "What is HTML?", answer: "HTML stands for HyperText Markup Language. It is the standard markup language for creating web pages." },
+                        { question: "What is CSS?", answer: "CSS stands for Cascading Style Sheets. It describes how HTML elements should be displayed." },
+                        { question: "What is JavaScript?", answer: "JavaScript is a programming language that enables interactive web pages and is an essential part of web applications." }
+                    ];
+                    
+                    // Try to reset localStorage
+                    if (storageAvailable) {
+                        saveToStorage('flashcards', flashcards);
+                    }
+                    
+                    currentCardIndex = 0;
+                    renderCurrentCard();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (addCardForm.style.display === 'block') return; // Don't process keys when form is open
+                
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        prevBtn.click();
+                        break;
+                    case 'ArrowRight':
+                        nextBtn.click();
+                        break;
+                    case ' ':
+                    case 'Enter':
+                        flipBtn.click();
+                        break;
+                }
+            });
+        });
 
       
     </script>
