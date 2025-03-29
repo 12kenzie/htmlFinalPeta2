@@ -272,11 +272,6 @@
         .schedule-table th {
             background: #f4f4f4;
         }
-        .input-container {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
         .input-container input {
             padding: 8px;
             border: 1px solid #ccc;
@@ -389,14 +384,13 @@
     </div>
 
     <!-- Schedule table -->
+    <h2>Task Calendar</h2>
     <div id="task-calendar"></div>
     <h2>Task Schedule</h2>
-    <div class="input-container">
-        <input type="text" id="task-name" placeholder="Task Name">
-        <input type="date" id="task-date">
-        <input type="time" id="task-time">
-        <button class="add-button" onclick="insertTask()">Add</button>
-    </div>
+    <input type="text" id="task-name" placeholder="Task Name">
+    <input type="date" id="task-date">
+    <input type="time" id="task-time">
+    <button class="add-button" onclick="insertTask()">Add</button>
     <table class="schedule-table" id="schedule-table">
         <thead>
             <tr>
